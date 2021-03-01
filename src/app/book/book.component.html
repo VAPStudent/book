@@ -1,0 +1,52 @@
+<div class="container">
+    <form [formGroup]="bookForm">
+        <div class="row">
+            <div class="row col-sm-5">
+                <h3 class="title">My First Http - " Books !!! "</h3>
+                <br><br>
+                <div class="form-group">
+                    <label for="bookid">Book Id</label>
+                    <input type="text" id="bookid" name="bookid" formControlName="bookid" class="form-control"
+                        autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="bookname">Book Name</label>
+                    <input type="text" id="bookname" name="bookname" formControlName="bookname" class="form-control"
+                        autocomplete="off">
+                    <span class="help-block"
+                        *ngIf="!bookForm.get('bookname').valid && bookForm.get('bookname').touched">
+                        Please enter a valid name !</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author" formControlName="author" class="form-control"
+                        autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-info" (click)="onPushBook()" [disabled]="!bookForm.valid">Push Book</button>
+                    <button class="btn btn-success" (click)="onSaveBook()" [disabled]="!bookForm.valid">Save Book</button>
+                    <button class="btn btn-warning" (click)="onGet()" >Get Book List</button>
+                  </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+      <div class="row col-sm-6">
+          <table class="table" >
+              <tr>
+                  <th>Book Id</th>
+                  <th>Book Name</th>
+                  <th>Author</th>
+              </tr>
+              <tr *ngFor="let obj of myBooks">
+                  <td> {{obj.bookid}} </td>
+                  <td> {{obj.bookname}} </td>
+                  <td> {{obj.author}} </td>
+              </tr>
+          </table>
+      </div>
+  </div>
+</div>
